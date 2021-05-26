@@ -1,0 +1,22 @@
+﻿@page "/counter"
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me to increment value by 10</button>
+<button class="btn btn-primary" @onclick="ResetCounter">Reset counter</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount = currentCount + 10;
+    }
+
+    private void ResetCounter()
+    {
+        currentCount = 0;
+    }
+}
