@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31313.79
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDemo", "BlazorDemo\BlazorDemo.csproj", "{32BE704D-CA4E-4B74-9173-35C628402E60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDemo", "BlazorDemo\BlazorDemo.csproj", "{32BE704D-CA4E-4B74-9173-35C628402E60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonPlaceholder.Adapter", "JsonPlaceholder.Adapter\JsonPlaceholder.Adapter.csproj", "{6C1DF0CD-81E2-4A0B-8A98-FBA503793351}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonPlaceholder.Adapter", "JsonPlaceholder.Adapter\JsonPlaceholder.Adapter.csproj", "{6C1DF0CD-81E2-4A0B-8A98-FBA503793351}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
