@@ -1,0 +1,49 @@
+﻿@page "/fetchdatafromapi"
+@inject HttpClient Http
+@inject JsonPlaceholder.Adapter.Client client;
+@using JsonPlaceholder.Adapter.Models;
+
+
+<h1>Json placeholder users</h1>
+
+<p>This component demonstrates fetching data from the server using external client.</p>
+
+@if (users == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (User user in users)
+            {
+                <tr>
+                    <td>@user.Name</td>
+                    <td>@user.Username</td>
+                    <td>@user.Email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    private IEnumerable<User> users = new List<User>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        users = await JsonPlaceholder.Adapter.Client.GetUsersAsync();
+        
+    }
+
+}
+
