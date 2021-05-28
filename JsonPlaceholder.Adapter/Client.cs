@@ -3,32 +3,48 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
+using JsonPlaceholder.Adapter.Models;
 
 namespace JsonPlaceholder.Adapter
 {
     public class Client
     {
-        public static async System.Threading.Tasks.Task<List<Models.User>> GetUsersAsync()
+        private const string JsonPlaceHolderBaseUri = "https://jsonplaceholder.typicode.com/";
+ 
+        /// <summary>
+        /// Initilize JsonPlaceHolder Client
+        /// </summary>
+        public static HttpClient SetUpHttpClient()
         {
-     
-            using (var client = new HttpClient())
+            var client = new HttpClient
             {
-                client.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                //GET Method  
-                HttpResponseMessage response = await client.GetAsync("users");
+                BaseAddress = new Uri(JsonPlaceHolderBaseUri)
+            };
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            return client;
+        }
+
+        /// <summary>
+        /// Get users from JsonPlaceHodder async
+        /// </summary>
+        /// <returns>List of users</returns>
+        public static async Task<List<User>> GetUsersAsync()
+        {
+            var client = SetUpHttpClient();
+            using (client)
+            {
+                var response = await client.GetAsync("users");
                 if (response.IsSuccessStatusCode)
                 {
-                    var jsonString = response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<List<Models.User>>(await jsonString);
-
+                    var jsonResponse = response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<List<User>>(await jsonResponse);
                 }
                 else
-                {
                     return null;
-                }
             }
+
         }
     }
 }
